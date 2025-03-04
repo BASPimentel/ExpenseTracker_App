@@ -28,6 +28,15 @@ class _ExpenseHomeState extends State<ExpenseHome> {
   final List<Map<String, dynamic>> _expenses = [];
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
+  String _selectedCategory = 'Food';
+  final List<String> _categories = [
+    'Food',
+    'Transport',
+    'Shopping',
+    'Entertainment',
+    'Bills',
+    'Others'
+  ];
 
   void _addExpense() {
     final String title = _titleController.text;
@@ -37,6 +46,7 @@ class _ExpenseHomeState extends State<ExpenseHome> {
         _expenses.add({
           'title': title,
           'amount': amount,
+          'category': _selectedCategory,
           'date': DateTime.now(),
         });
       });
@@ -93,6 +103,25 @@ class _ExpenseHomeState extends State<ExpenseHome> {
                   border: OutlineInputBorder(),
                 ),
                 keyboardType: TextInputType.number,
+              ),
+              SizedBox(height: 10),
+              DropdownButtonFormField(
+                value: _selectedCategory,
+                items: _categories.map((category) {
+                  return DropdownMenuItem(
+                    value: category,
+                    child: Text(category),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedCategory = value.toString();
+                  });
+                },
+                decoration: InputDecoration(
+                  labelText: 'Category',
+                  border: OutlineInputBorder(),
+                ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
@@ -178,7 +207,7 @@ class _ExpenseHomeState extends State<ExpenseHome> {
                                 fontSize: 16, fontWeight: FontWeight.bold),
                           ),
                           subtitle: Text(
-                            DateFormat.yMMMd().format(expense['date']),
+                            '${expense['category']} - ${DateFormat.yMMMd().format(expense['date'])}',
                             style: TextStyle(color: Colors.grey[600]),
                           ),
                           trailing: Text(
