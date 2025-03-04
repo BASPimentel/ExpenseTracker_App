@@ -1,6 +1,15 @@
-# expence_tracker
+# expense_tracker
 
-A new Flutter project.
+Expense Tracker
+A simple yet powerful Flutter app for tracking daily expenses with a sleek UI/UX. The app allows users to:
+
+✅ Add expenses with a title and amount
+✅ View total expenses for the current month
+✅ Delete expenses by long-pressing an entry
+✅ Responsive and smooth UI with Material Design
+✅ Persistent local storage (coming soon!)
+
+Built with Flutter and Dart, this project is great for learning state management and UI design principles. 
 
 ## Getting Started
 
